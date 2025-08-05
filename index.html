@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>txPanel - Liberty Control Dashboard</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+  </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+  <header class="bg-indigo-700 text-white shadow p-4">
+    <div class="container mx-auto flex justify-between items-center">
+      <h1 class="text-2xl font-bold">txPanel</h1>
+      <nav>
+        <a href="#info" class="mx-2 hover:underline">Info</a>
+        <a href="#updates" class="mx-2 hover:underline">Updates</a>
+        <a href="#logs" class="mx-2 hover:underline">Logs</a>
+        <a href="#tools" class="mx-2 hover:underline">Tools</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container mx-auto p-6">
+    <section id="info" class="mb-10">
+      <h2 class="text-xl font-semibold mb-2">What is txPanel?</h2>
+      <p>txPanel is your all-in-one ER:LC management tool designed for server admins. Monitor sessions, log events, and manage users with ease — all without the need for an API!</p>
+    </section>
+
+    <section id="updates" class="mb-10">
+      <h2 class="text-xl font-semibold mb-2">Recent Updates</h2>
+      <ul class="list-disc ml-6">
+        <li><strong>v1.3.0:</strong> Added real-time session logging.</li>
+        <li><strong>v1.2.5:</strong> Improved performance and memory usage.</li>
+        <li><strong>v1.2.0:</strong> Introduced live player analytics.</li>
+      </ul>
+    </section>
+
+    <section id="logs" class="mb-10">
+      <h2 class="text-xl font-semibold mb-2">In-Game Logging (No API Required)</h2>
+      <div class="bg-white shadow p-4 rounded">
+        <p class="text-sm text-gray-600 mb-2">Logs automatically update every 5 seconds</p>
+        <div id="logContainer" class="h-40 overflow-y-scroll bg-gray-100 p-2 text-sm font-mono border">
+          <!-- Sample Logs -->
+          <div>[12:32:14] Player Mason_R joined the server</div>
+          <div>[12:33:01] Player Ava_P issued /kick Brian_X</div>
+          <div>[12:35:45] Player Brian_X rejoined the server</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="tools" class="mb-10">
+      <h2 class="text-xl font-semibold mb-2">Extra Features</h2>
+      <div class="grid md:grid-cols-2 gap-4">
+        <div class="bg-white p-4 shadow rounded">
+          <h3 class="font-bold mb-1">Quick Commands</h3>
+          <p>Trigger admin actions like /kick or /ban with one click (for supported bots).</p>
+        </div>
+        <div class="bg-white p-4 shadow rounded">
+          <h3 class="font-bold mb-1">User Stats Tracker</h3>
+          <p>Track player activity over time, including playtime, admin commands used, and infractions.</p>
+        </div>
+        <div class="bg-white p-4 shadow rounded">
+          <h3 class="font-bold mb-1">Screenshot Requests</h3>
+          <p>Automatically request and store screenshots from players for moderation proof.</p>
+        </div>
+        <div class="bg-white p-4 shadow rounded">
+          <h3 class="font-bold mb-1">Session Uptime Monitor</h3>
+          <p>See how long your current ER:LC server has been running.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-gray-200 text-center p-4 text-sm text-gray-600">
+    &copy; 2025 txPanel. Designed for Liberty RP servers.
+  </footer>
+
+  <script>
+    // Simulate live logs (client-side only demo)
+    const logContainer = document.getElementById("logContainer");
+    setInterval(() => {
+      const now = new Date();
+      const time = now.toTimeString().split(" ")[0];
+      const newLog = document.createElement("div");
+      const fakeEvents = [
+        "joined the server",
+        "left the server",
+        "issued /kick",
+        "issued /warn",
+        "issued /ban"
+      ];
+      const event = fakeEvents[Math.floor(Math.random() * fakeEvents.length)];
+      newLog.textContent = `[${time}] Player ${randomName()} ${event}`;
+      logContainer.appendChild(newLog);
+      logContainer.scrollTop = logContainer.scrollHeight;
+    }, 5000);
+
+    function randomName() {
+      const names = ["Alex_R", "Mason_R", "Chris_T", "Emma_L", "Liam_W"];
+      return names[Math.floor(Math.random() * names.length)];
+    }
+  </script>
+</body>
+</html>
