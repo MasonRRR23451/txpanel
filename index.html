@@ -4,9 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>txPanel - Liberty Control Dashboard</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
   <style>
-    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
   </style>
 </head>
 <body class="bg-gray-900 text-white">
@@ -16,7 +18,7 @@
       <nav class="space-x-4">
         <a href="#info" class="hover:underline">Info</a>
         <a href="#updates" class="hover:underline">Updates</a>
-        <a href="#logs" class="hover:underline">Logs</a>
+        <a href="logs.html" class="hover:underline">Logs</a>
         <a href="#tools" class="hover:underline">Tools</a>
         <a href="#dashboard" class="hover:underline">Dashboard</a>
       </nav>
@@ -41,17 +43,6 @@
         <div>
           <strong class="text-indigo-400">v1.2.0</strong> – Player analytics added
         </div>
-      </div>
-    </section>
-
-    <section id="logs" class="mb-12">
-      <h2 class="text-3xl font-semibold mb-4 text-center">Manual Log Entry</h2>
-      <div class="bg-gray-800 p-6 rounded max-w-4xl mx-auto">
-        <form id="logForm" class="space-y-4">
-          <input type="text" id="logInput" placeholder="Enter log message" class="w-full p-2 rounded bg-gray-900 border border-gray-700 text-white">
-          <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 px-4 py-2 rounded">Add Log</button>
-        </form>
-        <div class="bg-gray-900 p-4 rounded h-64 overflow-y-auto border border-gray-700 text-sm font-mono mt-4" id="logOutput"></div>
       </div>
     </section>
 
@@ -81,7 +72,7 @@
       <h2 class="text-3xl font-semibold mb-4 text-center">Community Dashboard</h2>
       <div class="bg-gray-800 p-6 rounded max-w-4xl mx-auto text-center">
         <p class="mb-4">Create and manage your own server dashboard instance. All settings are saved in your browser locally.</p>
-        <input type="text" id="communityName" placeholder="Community Name" class="w-full p-2 rounded bg-gray-900 border border-gray-700 text-white mb-2">
+        <input type="text" id="communityName" placeholder="Community Name" class="w-full p-2 rounded bg-gray-900 border border-gray-700 text-white mb-2" />
         <button onclick="saveCommunity()" class="bg-green-600 hover:bg-green-700 px-4 py-2 rounded">Save</button>
         <p id="saveMsg" class="text-sm text-gray-400 mt-2 hidden">Community saved!</p>
       </div>
@@ -93,25 +84,15 @@
   </footer>
 
   <script>
-    document.getElementById('logForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      const log = document.getElementById('logInput').value;
-      if (log.trim()) {
-        const logOutput = document.getElementById('logOutput');
-        const newEntry = document.createElement('div');
-        newEntry.textContent = `[${new Date().toLocaleTimeString()}] ${log}`;
-        newEntry.className = 'text-gray-400';
-        logOutput.appendChild(newEntry);
-        document.getElementById('logInput').value = '';
-        logOutput.scrollTop = logOutput.scrollHeight;
-      }
-    });
+    document.getElementById('communityName').value = localStorage.getItem('txPanelCommunity') || '';
 
     function saveCommunity() {
       const name = document.getElementById('communityName').value;
       if (name.trim()) {
         localStorage.setItem('txPanelCommunity', name);
-        document.getElementById('saveMsg').classList.remove('hidden');
+        const saveMsg = document.getElementById('saveMsg');
+        saveMsg.classList.remove('hidden');
+        setTimeout(() => saveMsg.classList.add('hidden'), 2000);
       }
     }
   </script>
