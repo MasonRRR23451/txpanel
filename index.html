@@ -18,6 +18,7 @@
         <a href="#updates" class="hover:underline">Updates</a>
         <a href="#logs" class="hover:underline">Logs</a>
         <a href="#tools" class="hover:underline">Tools</a>
+        <a href="#dashboard" class="hover:underline">Dashboard</a>
       </nav>
     </div>
   </header>
@@ -44,14 +45,13 @@
     </section>
 
     <section id="logs" class="mb-12">
-      <h2 class="text-3xl font-semibold mb-4 text-center">In-Game Logging</h2>
+      <h2 class="text-3xl font-semibold mb-4 text-center">Manual Log Entry</h2>
       <div class="bg-gray-800 p-6 rounded max-w-4xl mx-auto">
-        <p class="text-gray-300 mb-4 text-center">Logs are uploaded manually through the server control page or bot integration.</p>
-        <div class="bg-gray-900 p-4 rounded h-64 overflow-y-auto border border-gray-700 text-sm font-mono">
-          <div class="text-gray-400">[12:32:14] Player Mason_R joined the server</div>
-          <div class="text-gray-400">[12:33:01] Player Ava_P issued /kick Brian_X</div>
-          <div class="text-gray-400">[12:35:45] Player Brian_X rejoined the server</div>
-        </div>
+        <form id="logForm" class="space-y-4">
+          <input type="text" id="logInput" placeholder="Enter log message" class="w-full p-2 rounded bg-gray-900 border border-gray-700 text-white">
+          <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 px-4 py-2 rounded">Add Log</button>
+        </form>
+        <div class="bg-gray-900 p-4 rounded h-64 overflow-y-auto border border-gray-700 text-sm font-mono mt-4" id="logOutput"></div>
       </div>
     </section>
 
@@ -59,21 +59,31 @@
       <h2 class="text-3xl font-semibold mb-4 text-center">Tools & Features</h2>
       <div class="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
         <div class="bg-gray-800 p-6 rounded">
-          <h3 class="text-xl font-bold mb-2">Quick Commands</h3>
-          <p>Run in-game admin commands directly from the dashboard interface.</p>
+          <h3 class="text-xl font-bold mb-2">Roblox Username Lookup</h3>
+          <p>Find user IDs and details by entering a Roblox username.</p>
         </div>
         <div class="bg-gray-800 p-6 rounded">
-          <h3 class="text-xl font-bold mb-2">User Profiles</h3>
-          <p>View full profiles including history, warnings, and session durations.</p>
+          <h3 class="text-xl font-bold mb-2">Ban / Kick / Warn System</h3>
+          <p>Staff tools to issue bans, kicks, or warnings with reasons and timestamps.</p>
         </div>
         <div class="bg-gray-800 p-6 rounded">
-          <h3 class="text-xl font-bold mb-2">Screenshot Requests</h3>
-          <p>Request & store screenshots from players for staff review.</p>
+          <h3 class="text-xl font-bold mb-2">Ban BOLO List</h3>
+          <p>Track users who are on the lookout for ban-worthy behavior.</p>
         </div>
         <div class="bg-gray-800 p-6 rounded">
-          <h3 class="text-xl font-bold mb-2">Live Player List (Coming Soon)</h3>
-          <p>See who is online and their active roles and locations.</p>
+          <h3 class="text-xl font-bold mb-2">Shift Manager</h3>
+          <p>Log in and out of staff shifts and track time spent on duty.</p>
         </div>
+      </div>
+    </section>
+
+    <section id="dashboard" class="mb-12">
+      <h2 class="text-3xl font-semibold mb-4 text-center">Community Dashboard</h2>
+      <div class="bg-gray-800 p-6 rounded max-w-4xl mx-auto text-center">
+        <p class="mb-4">Create and manage your own server dashboard instance. All settings are saved in your browser locally.</p>
+        <input type="text" id="communityName" placeholder="Community Name" class="w-full p-2 rounded bg-gray-900 border border-gray-700 text-white mb-2">
+        <button onclick="saveCommunity()" class="bg-green-600 hover:bg-green-700 px-4 py-2 rounded">Save</button>
+        <p id="saveMsg" class="text-sm text-gray-400 mt-2 hidden">Community saved!</p>
       </div>
     </section>
   </main>
@@ -81,5 +91,29 @@
   <footer class="bg-gray-800 text-center p-4 text-sm text-gray-500">
     &copy; 2025 txPanel. Crafted with simplicity and power in mind.
   </footer>
+
+  <script>
+    document.getElementById('logForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const log = document.getElementById('logInput').value;
+      if (log.trim()) {
+        const logOutput = document.getElementById('logOutput');
+        const newEntry = document.createElement('div');
+        newEntry.textContent = `[${new Date().toLocaleTimeString()}] ${log}`;
+        newEntry.className = 'text-gray-400';
+        logOutput.appendChild(newEntry);
+        document.getElementById('logInput').value = '';
+        logOutput.scrollTop = logOutput.scrollHeight;
+      }
+    });
+
+    function saveCommunity() {
+      const name = document.getElementById('communityName').value;
+      if (name.trim()) {
+        localStorage.setItem('txPanelCommunity', name);
+        document.getElementById('saveMsg').classList.remove('hidden');
+      }
+    }
+  </script>
 </body>
 </html>
