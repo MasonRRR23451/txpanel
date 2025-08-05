@@ -9,98 +9,77 @@
     body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
   </style>
 </head>
-<body class="bg-gray-100 text-gray-800">
-  <header class="bg-indigo-700 text-white shadow p-4">
+<body class="bg-gray-900 text-white">
+  <header class="bg-gradient-to-r from-indigo-800 to-purple-700 shadow p-4">
     <div class="container mx-auto flex justify-between items-center">
-      <h1 class="text-2xl font-bold">txPanel</h1>
-      <nav>
-        <a href="#info" class="mx-2 hover:underline">Info</a>
-        <a href="#updates" class="mx-2 hover:underline">Updates</a>
-        <a href="#logs" class="mx-2 hover:underline">Logs</a>
-        <a href="#tools" class="mx-2 hover:underline">Tools</a>
+      <h1 class="text-3xl font-bold">txPanel</h1>
+      <nav class="space-x-4">
+        <a href="#info" class="hover:underline">Info</a>
+        <a href="#updates" class="hover:underline">Updates</a>
+        <a href="#logs" class="hover:underline">Logs</a>
+        <a href="#tools" class="hover:underline">Tools</a>
       </nav>
     </div>
   </header>
 
   <main class="container mx-auto p-6">
-    <section id="info" class="mb-10">
-      <h2 class="text-xl font-semibold mb-2">What is txPanel?</h2>
-      <p>txPanel is your all-in-one ER:LC management tool designed for server admins. Monitor sessions, log events, and manage users with ease — all without the need for an API!</p>
+    <section id="info" class="mb-12 text-center">
+      <h2 class="text-4xl font-semibold mb-4">What is txPanel?</h2>
+      <p class="text-lg max-w-2xl mx-auto">txPanel is a sleek, modern server management dashboard designed for ER:LC and inspired by the simplicity of Melonly.xyz and the power of txAdmin.gg. No APIs. No bloat. Just control.</p>
     </section>
 
-    <section id="updates" class="mb-10">
-      <h2 class="text-xl font-semibold mb-2">Recent Updates</h2>
-      <ul class="list-disc ml-6">
-        <li><strong>v1.3.0:</strong> Added real-time session logging.</li>
-        <li><strong>v1.2.5:</strong> Improved performance and memory usage.</li>
-        <li><strong>v1.2.0:</strong> Introduced live player analytics.</li>
-      </ul>
-    </section>
-
-    <section id="logs" class="mb-10">
-      <h2 class="text-xl font-semibold mb-2">In-Game Logging (No API Required)</h2>
-      <div class="bg-white shadow p-4 rounded">
-        <p class="text-sm text-gray-600 mb-2">Logs automatically update every 5 seconds</p>
-        <div id="logContainer" class="h-40 overflow-y-scroll bg-gray-100 p-2 text-sm font-mono border">
-          <!-- Sample Logs -->
-          <div>[12:32:14] Player Mason_R joined the server</div>
-          <div>[12:33:01] Player Ava_P issued /kick Brian_X</div>
-          <div>[12:35:45] Player Brian_X rejoined the server</div>
+    <section id="updates" class="mb-12">
+      <h2 class="text-3xl font-semibold mb-4 text-center">Recent Updates</h2>
+      <div class="max-w-xl mx-auto bg-gray-800 rounded p-6 space-y-2">
+        <div class="border-b border-gray-700 pb-2">
+          <strong class="text-indigo-400">v1.3.0</strong> – New dashboard layout & performance optimizations
+        </div>
+        <div class="border-b border-gray-700 pb-2">
+          <strong class="text-indigo-400">v1.2.5</strong> – Dark mode + Tailwind support
+        </div>
+        <div>
+          <strong class="text-indigo-400">v1.2.0</strong> – Player analytics added
         </div>
       </div>
     </section>
 
-    <section id="tools" class="mb-10">
-      <h2 class="text-xl font-semibold mb-2">Extra Features</h2>
-      <div class="grid md:grid-cols-2 gap-4">
-        <div class="bg-white p-4 shadow rounded">
-          <h3 class="font-bold mb-1">Quick Commands</h3>
-          <p>Trigger admin actions like /kick or /ban with one click (for supported bots).</p>
+    <section id="logs" class="mb-12">
+      <h2 class="text-3xl font-semibold mb-4 text-center">In-Game Logging</h2>
+      <div class="bg-gray-800 p-6 rounded max-w-4xl mx-auto">
+        <p class="text-gray-300 mb-4 text-center">Logs are uploaded manually through the server control page or bot integration.</p>
+        <div class="bg-gray-900 p-4 rounded h-64 overflow-y-auto border border-gray-700 text-sm font-mono">
+          <div class="text-gray-400">[12:32:14] Player Mason_R joined the server</div>
+          <div class="text-gray-400">[12:33:01] Player Ava_P issued /kick Brian_X</div>
+          <div class="text-gray-400">[12:35:45] Player Brian_X rejoined the server</div>
         </div>
-        <div class="bg-white p-4 shadow rounded">
-          <h3 class="font-bold mb-1">User Stats Tracker</h3>
-          <p>Track player activity over time, including playtime, admin commands used, and infractions.</p>
+      </div>
+    </section>
+
+    <section id="tools" class="mb-12">
+      <h2 class="text-3xl font-semibold mb-4 text-center">Tools & Features</h2>
+      <div class="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+        <div class="bg-gray-800 p-6 rounded">
+          <h3 class="text-xl font-bold mb-2">Quick Commands</h3>
+          <p>Run in-game admin commands directly from the dashboard interface.</p>
         </div>
-        <div class="bg-white p-4 shadow rounded">
-          <h3 class="font-bold mb-1">Screenshot Requests</h3>
-          <p>Automatically request and store screenshots from players for moderation proof.</p>
+        <div class="bg-gray-800 p-6 rounded">
+          <h3 class="text-xl font-bold mb-2">User Profiles</h3>
+          <p>View full profiles including history, warnings, and session durations.</p>
         </div>
-        <div class="bg-white p-4 shadow rounded">
-          <h3 class="font-bold mb-1">Session Uptime Monitor</h3>
-          <p>See how long your current ER:LC server has been running.</p>
+        <div class="bg-gray-800 p-6 rounded">
+          <h3 class="text-xl font-bold mb-2">Screenshot Requests</h3>
+          <p>Request & store screenshots from players for staff review.</p>
+        </div>
+        <div class="bg-gray-800 p-6 rounded">
+          <h3 class="text-xl font-bold mb-2">Live Player List (Coming Soon)</h3>
+          <p>See who is online and their active roles and locations.</p>
         </div>
       </div>
     </section>
   </main>
 
-  <footer class="bg-gray-200 text-center p-4 text-sm text-gray-600">
-    &copy; 2025 txPanel. Designed for Liberty RP servers.
+  <footer class="bg-gray-800 text-center p-4 text-sm text-gray-500">
+    &copy; 2025 txPanel. Crafted with simplicity and power in mind.
   </footer>
-
-  <script>
-    // Simulate live logs (client-side only demo)
-    const logContainer = document.getElementById("logContainer");
-    setInterval(() => {
-      const now = new Date();
-      const time = now.toTimeString().split(" ")[0];
-      const newLog = document.createElement("div");
-      const fakeEvents = [
-        "joined the server",
-        "left the server",
-        "issued /kick",
-        "issued /warn",
-        "issued /ban"
-      ];
-      const event = fakeEvents[Math.floor(Math.random() * fakeEvents.length)];
-      newLog.textContent = `[${time}] Player ${randomName()} ${event}`;
-      logContainer.appendChild(newLog);
-      logContainer.scrollTop = logContainer.scrollHeight;
-    }, 5000);
-
-    function randomName() {
-      const names = ["Alex_R", "Mason_R", "Chris_T", "Emma_L", "Liam_W"];
-      return names[Math.floor(Math.random() * names.length)];
-    }
-  </script>
 </body>
 </html>
